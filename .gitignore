@@ -1,0 +1,6 @@
+node_modules/
+dist/
+.dev/
+src-tauri/target/
+src-tauri/.tauri/
+*.log
