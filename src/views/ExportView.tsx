@@ -9,7 +9,7 @@ const ExportView = () => {
   const handleCsv = async () => {
     const companyId = getActiveCompanyId();
     if (!companyId) {
-      setMessage("Select a company on the dashboard.");
+      setMessage("Välj ett företag i översikten.");
       return;
     }
     const result = await api.exportCsv({ companyId, targetPath });
@@ -19,7 +19,7 @@ const ExportView = () => {
   const handleSie = async () => {
     const companyId = getActiveCompanyId();
     if (!companyId) {
-      setMessage("Select a company on the dashboard.");
+      setMessage("Välj ett företag i översikten.");
       return;
     }
     const result = await api.exportSie({ companyId, targetPath });
@@ -31,16 +31,16 @@ const ExportView = () => {
       <h2>Export</h2>
       <div className="card">
         <label>
-          Target path (folder or file path depending on export)
+          Målväg (mapp eller fil beroende på export)
           <input
             value={targetPath}
             onChange={(event) => setTargetPath(event.target.value)}
-            placeholder="/path/to/export"
+            placeholder="/sökväg/till/export"
           />
         </label>
         <div className="inline-form">
-          <button onClick={handleCsv}>Export CSV</button>
-          <button onClick={handleSie}>Export SIE4 stub</button>
+          <button onClick={handleCsv}>Exportera CSV</button>
+          <button onClick={handleSie}>Exportera SIE4-stub</button>
         </div>
         {message && <p>{message}</p>}
       </div>

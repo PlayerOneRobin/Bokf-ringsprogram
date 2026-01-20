@@ -43,7 +43,7 @@ const VoucherDetail = () => {
     const updated = await api.createCorrectionVoucher({
       originalVoucherId: voucher.id,
       date: correctionDate,
-      description: correctionDescription || `Correction of ${voucher.voucherNumber}`,
+      description: correctionDescription || `Rättelse av ${voucher.voucherNumber}`,
     });
     navigate(`/vouchers/${updated.id}`);
   };
@@ -53,40 +53,40 @@ const VoucherDetail = () => {
 
   return (
     <section>
-      <h2>Voucher Detail</h2>
+      <h2>Verifikatdetalj</h2>
       {error && <p className="error">{error}</p>}
       {voucher && (
         <>
           <div className="card">
-            <h3>Header</h3>
+            <h3>Huvud</h3>
             <p>
-              <strong>Number:</strong> {voucher.voucherNumber}
+              <strong>Nummer:</strong> {voucher.voucherNumber}
             </p>
             <p>
-              <strong>Date:</strong> {voucher.date}
+              <strong>Datum:</strong> {voucher.date}
             </p>
             <p>
-              <strong>Description:</strong> {voucher.description}
+              <strong>Beskrivning:</strong> {voucher.description}
             </p>
             <p>
-              <strong>Counterparty:</strong> {voucher.counterparty ?? "-"}
+              <strong>Motpart:</strong> {voucher.counterparty ?? "-"}
             </p>
             <p>
-              <strong>Status:</strong> {voucher.postedAt ? "Posted" : "Draft"}
+              <strong>Status:</strong> {voucher.postedAt ? "Bokförd" : "Utkast"}
             </p>
             {!voucher.postedAt && (
-              <button onClick={handlePost}>Post voucher</button>
+              <button onClick={handlePost}>Bokför verifikat</button>
             )}
           </div>
           <div className="card">
-            <h3>Rows</h3>
+            <h3>Rader</h3>
             <table>
               <thead>
                 <tr>
-                  <th>Account</th>
-                  <th>Description</th>
-                  <th>Debit</th>
-                  <th>Credit</th>
+                  <th>Konto</th>
+                  <th>Beskrivning</th>
+                  <th>Debet</th>
+                  <th>Kredit</th>
                 </tr>
               </thead>
               <tbody>
@@ -100,10 +100,10 @@ const VoucherDetail = () => {
                 ))}
               </tbody>
             </table>
-            <p>Total: {formatCents(total)}</p>
+            <p>Summa: {formatCents(total)}</p>
           </div>
           <div className="card">
-            <h3>Attachments</h3>
+            <h3>Bilagor</h3>
             {voucher.attachments?.length ? (
               <ul>
                 {voucher.attachments.map((attachment) => (
@@ -113,14 +113,14 @@ const VoucherDetail = () => {
                 ))}
               </ul>
             ) : (
-              <p>No attachments.</p>
+              <p>Inga bilagor.</p>
             )}
           </div>
           <div className="card">
-            <h3>Create correction voucher</h3>
+            <h3>Skapa rättelseverifikat</h3>
             <div className="inline-form">
               <label>
-                Date
+                Datum
                 <input
                   type="date"
                   value={correctionDate}
@@ -128,13 +128,13 @@ const VoucherDetail = () => {
                 />
               </label>
               <label>
-                Description
+                Beskrivning
                 <input
                   value={correctionDescription}
                   onChange={(event) => setCorrectionDescription(event.target.value)}
                 />
               </label>
-              <button onClick={handleCorrection}>Create correction</button>
+              <button onClick={handleCorrection}>Skapa rättelse</button>
             </div>
           </div>
         </>

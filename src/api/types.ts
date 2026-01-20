@@ -92,6 +92,12 @@ export type CreateVoucherRowInput = {
   vatCode?: string | null;
 };
 
+export type CreateAttachmentInput = {
+  refType: string;
+  refValue: string;
+  note?: string | null;
+};
+
 export type CreateVoucherInput = {
   companyId: string;
   seriesId: string;
@@ -99,6 +105,7 @@ export type CreateVoucherInput = {
   description: string;
   counterparty?: string | null;
   rows: CreateVoucherRowInput[];
+  attachments?: CreateAttachmentInput[];
 };
 
 export type CreateCorrectionInput = {

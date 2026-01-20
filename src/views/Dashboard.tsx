@@ -40,15 +40,15 @@ const Dashboard = () => {
 
   return (
     <section>
-      <h2>Dashboard</h2>
+      <h2>Översikt</h2>
       <div className="card">
-        <h3>Select company</h3>
+        <h3>Välj företag</h3>
         <select
           value={activeId ?? ""}
           onChange={(event) => handleSelect(event.target.value)}
         >
           <option value="" disabled>
-            Select company
+            Välj företag
           </option>
           {companies.map((company) => (
             <option key={company.id} value={company.id}>
@@ -60,22 +60,22 @@ const Dashboard = () => {
           <input
             value={newName}
             onChange={(event) => setNewName(event.target.value)}
-            placeholder="New company name"
+            placeholder="Nytt företagsnamn"
           />
-          <button onClick={handleCreate}>Create</button>
+          <button onClick={handleCreate}>Skapa</button>
         </div>
       </div>
       <div className="card">
-        <h3>Quick links</h3>
+        <h3>Snabblänkar</h3>
         <ul className="link-grid">
           <li>
-            <Link to="/vouchers">Vouchers</Link>
+            <Link to="/vouchers">Verifikat</Link>
           </li>
           <li>
-            <Link to="/accounts">Chart of accounts</Link>
+            <Link to="/accounts">Kontoplan</Link>
           </li>
           <li>
-            <Link to="/reports">Reports</Link>
+            <Link to="/reports">Rapporter</Link>
           </li>
           <li>
             <Link to="/export">Export</Link>

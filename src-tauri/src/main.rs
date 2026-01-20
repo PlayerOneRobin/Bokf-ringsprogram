@@ -316,6 +316,27 @@ fn create_voucher(state: State<DbState>, payload: CreateVoucherInput) -> Result<
         .map_err(map_sql_error)?;
     }
 
+    if let Some(attachments) = &payload.attachments {
+        for attachment in attachments {
+            if attachment.ref_value.trim().is_empty() {
+                continue;
+            }
+            tx.execute(
+                "INSERT INTO attachments (id, voucher_id, ref_type, ref_value, note, created_at)
+                 VALUES (?1, ?2, ?3, ?4, ?5, ?6)",
+                params![
+                    uuid::Uuid::new_v4().to_string(),
+                    voucher_id,
+                    attachment.ref_type,
+                    attachment.ref_value,
+                    attachment.note,
+                    now
+                ],
+            )
+            .map_err(map_sql_error)?;
+        }
+    }
+
     tx.execute(
         "INSERT INTO audit_log (id, company_id, entity_type, entity_id, action, payload_json, created_at, created_by)
          VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8)",

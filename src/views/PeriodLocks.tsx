@@ -12,7 +12,7 @@ const PeriodLocks = () => {
   const load = async () => {
     const companyId = getActiveCompanyId();
     if (!companyId) {
-      setError("Select a company on the dashboard.");
+      setError("Välj ett företag i översikten.");
       return;
     }
     setError(null);
@@ -37,10 +37,10 @@ const PeriodLocks = () => {
 
   return (
     <section>
-      <h2>Period Locks</h2>
+      <h2>Periodlås</h2>
       {error && <p className="error">{error}</p>}
       <div className="card">
-        <h3>Lock period</h3>
+        <h3>Lås period</h3>
         <div className="inline-form">
           <label>
             Start
@@ -51,14 +51,14 @@ const PeriodLocks = () => {
             />
           </label>
           <label>
-            End
+            Slut
             <input
               type="date"
               value={periodEnd}
               onChange={(event) => setPeriodEnd(event.target.value)}
             />
           </label>
-          <button onClick={handleLock}>Lock</button>
+          <button onClick={handleLock}>Lås</button>
         </div>
       </div>
       <div className="card">
@@ -66,9 +66,9 @@ const PeriodLocks = () => {
           <thead>
             <tr>
               <th>Start</th>
-              <th>End</th>
-              <th>Locked At</th>
-              <th>By</th>
+              <th>Slut</th>
+              <th>Låst</th>
+              <th>Låst av</th>
             </tr>
           </thead>
           <tbody>

@@ -10,10 +10,18 @@ const Accounts = () => {
   const [name, setName] = useState("");
   const [accountType, setAccountType] = useState("Asset");
 
+  const typeLabels: Record<string, string> = {
+    Asset: "Tillgång",
+    Liability: "Skuld",
+    Equity: "Eget kapital",
+    Income: "Intäkt",
+    Expense: "Kostnad",
+  };
+
   const load = async () => {
     const companyId = getActiveCompanyId();
     if (!companyId) {
-      setError("Select a company on the dashboard.");
+      setError("Välj ett företag i översikten.");
       return;
     }
     setError(null);
@@ -59,18 +67,18 @@ const Accounts = () => {
 
   return (
     <section>
-      <h2>Chart of Accounts</h2>
+      <h2>Kontoplan</h2>
       {error && <p className="error">{error}</p>}
       <div className="card">
-        <h3>Create account</h3>
+        <h3>Skapa konto</h3>
         <div className="inline-form">
           <input
-            placeholder="Number"
+            placeholder="Kontonummer"
             value={number}
             onChange={(event) => setNumber(event.target.value)}
           />
           <input
-            placeholder="Name"
+            placeholder="Kontonamn"
             value={name}
             onChange={(event) => setName(event.target.value)}
           />
@@ -78,22 +86,22 @@ const Accounts = () => {
             value={accountType}
             onChange={(event) => setAccountType(event.target.value)}
           >
-            <option value="Asset">Asset</option>
-            <option value="Liability">Liability</option>
-            <option value="Equity">Equity</option>
-            <option value="Income">Income</option>
-            <option value="Expense">Expense</option>
+            <option value="Asset">Tillgång</option>
+            <option value="Liability">Skuld</option>
+            <option value="Equity">Eget kapital</option>
+            <option value="Income">Intäkt</option>
+            <option value="Expense">Kostnad</option>
           </select>
-          <button onClick={handleCreate}>Create</button>
+          <button onClick={handleCreate}>Skapa</button>
         </div>
       </div>
       <div className="card">
         <table>
           <thead>
             <tr>
-              <th>Number</th>
-              <th>Name</th>
-              <th>Type</th>
+              <th>Nummer</th>
+              <th>Namn</th>
+              <th>Typ</th>
               <th>Status</th>
             </tr>
           </thead>
@@ -102,10 +110,10 @@ const Accounts = () => {
               <tr key={account.id}>
                 <td>{account.number}</td>
                 <td>{account.name}</td>
-                <td>{account.accountType}</td>
+                <td>{typeLabels[account.accountType] ?? account.accountType}</td>
                 <td>
                   <button onClick={() => handleToggle(account)}>
-                    {account.isActive ? "Deactivate" : "Activate"}
+                    {account.isActive ? "Inaktivera" : "Aktivera"}
                   </button>
                 </td>
               </tr>

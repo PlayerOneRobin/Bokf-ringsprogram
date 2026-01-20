@@ -21,7 +21,7 @@ const VouchersList = () => {
   const load = async () => {
     const companyId = getActiveCompanyId();
     if (!companyId) {
-      setError("Select a company on the dashboard.");
+      setError("Välj ett företag i översikten.");
       return;
     }
     setError(null);
@@ -40,17 +40,17 @@ const VouchersList = () => {
   return (
     <section>
       <div className="section-header">
-        <h2>Vouchers</h2>
+        <h2>Verifikat</h2>
         <Link className="button" to="/vouchers/new">
-          New Voucher
+          Nytt verifikat
         </Link>
       </div>
       {error && <p className="error">{error}</p>}
       <div className="card">
-        <h3>Filters</h3>
+        <h3>Filter</h3>
         <div className="inline-form">
           <label>
-            From
+            Från
             <input
               type="date"
               value={fromDate}
@@ -58,24 +58,24 @@ const VouchersList = () => {
             />
           </label>
           <label>
-            To
+            Till
             <input
               type="date"
               value={toDate}
               onChange={(event) => setToDate(event.target.value)}
             />
           </label>
-          <button onClick={load}>Apply</button>
+          <button onClick={load}>Applicera</button>
         </div>
       </div>
       <div className="card">
         <table>
           <thead>
             <tr>
-              <th>No.</th>
-              <th>Date</th>
-              <th>Description</th>
-              <th>Total</th>
+              <th>Nr</th>
+              <th>Datum</th>
+              <th>Beskrivning</th>
+              <th>Summa</th>
               <th>Status</th>
             </tr>
           </thead>
@@ -90,7 +90,7 @@ const VouchersList = () => {
                 <td>{voucher.date}</td>
                 <td>{voucher.description}</td>
                 <td>{formatCents(sumVoucher(voucher))}</td>
-                <td>{voucher.postedAt ? "Posted" : "Draft"}</td>
+                <td>{voucher.postedAt ? "Bokförd" : "Utkast"}</td>
               </tr>
             ))}
           </tbody>

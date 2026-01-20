@@ -14,11 +14,11 @@ const App = () => {
       <header className="topbar">
         <h1>Bokföringsprogram</h1>
         <nav className="nav">
-          <NavLink to="/">Dashboard</NavLink>
-          <NavLink to="/vouchers">Vouchers</NavLink>
-          <NavLink to="/accounts">Accounts</NavLink>
-          <NavLink to="/period-locks">Period Locks</NavLink>
-          <NavLink to="/reports">Reports</NavLink>
+          <NavLink to="/">Översikt</NavLink>
+          <NavLink to="/vouchers">Verifikat</NavLink>
+          <NavLink to="/accounts">Kontoplan</NavLink>
+          <NavLink to="/period-locks">Periodlås</NavLink>
+          <NavLink to="/reports">Rapporter</NavLink>
           <NavLink to="/export">Export</NavLink>
         </nav>
       </header>

@@ -115,6 +115,7 @@ pub struct CreateVoucherInput {
     pub description: String,
     pub counterparty: Option<String>,
     pub rows: Vec<CreateVoucherRowInput>,
+    pub attachments: Option<Vec<CreateAttachmentInput>>,
 }
 
 #[derive(Debug, Deserialize)]
@@ -125,6 +126,14 @@ pub struct CreateVoucherRowInput {
     pub debit_cents: i64,
     pub credit_cents: i64,
     pub vat_code: Option<String>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct CreateAttachmentInput {
+    pub ref_type: String,
+    pub ref_value: String,
+    pub note: Option<String>,
 }
 
 #[derive(Debug, Deserialize)]

@@ -16,7 +16,7 @@ const Reports = () => {
   const loadAccounts = async () => {
     const companyId = getActiveCompanyId();
     if (!companyId) {
-      setError("Select a company on the dashboard.");
+      setError("Välj ett företag i översikten.");
       return;
     }
     const data = await api.listAccounts(companyId);
@@ -59,13 +59,13 @@ const Reports = () => {
 
   return (
     <section>
-      <h2>Reports</h2>
+      <h2>Rapporter</h2>
       {error && <p className="error">{error}</p>}
       <div className="card">
-        <h3>Filters</h3>
+        <h3>Filter</h3>
         <div className="inline-form">
           <label>
-            From
+            Från
             <input
               type="date"
               value={fromDate}
@@ -73,25 +73,25 @@ const Reports = () => {
             />
           </label>
           <label>
-            To
+            Till
             <input
               type="date"
               value={toDate}
               onChange={(event) => setToDate(event.target.value)}
             />
           </label>
-          <button onClick={runVoucherList}>Run voucher list</button>
+          <button onClick={runVoucherList}>Kör verifikationslista</button>
         </div>
       </div>
       <div className="card">
-        <h3>Voucher list (general journal)</h3>
+        <h3>Verifikationslista (grundbok)</h3>
         <table>
           <thead>
             <tr>
-              <th>No.</th>
-              <th>Date</th>
-              <th>Description</th>
-              <th>Total</th>
+              <th>Nr</th>
+              <th>Datum</th>
+              <th>Beskrivning</th>
+              <th>Summa</th>
             </tr>
           </thead>
           <tbody>
@@ -107,10 +107,10 @@ const Reports = () => {
         </table>
       </div>
       <div className="card">
-        <h3>General ledger</h3>
+        <h3>Huvudbok</h3>
         <div className="inline-form">
           <label>
-            Account
+            Konto
             <select
               value={accountId}
               onChange={(event) => setAccountId(event.target.value)}
@@ -122,17 +122,17 @@ const Reports = () => {
               ))}
             </select>
           </label>
-          <button onClick={runLedger}>Run ledger</button>
+          <button onClick={runLedger}>Kör huvudbok</button>
         </div>
         <table>
           <thead>
             <tr>
-              <th>Date</th>
-              <th>Voucher</th>
-              <th>Description</th>
-              <th>Debit</th>
-              <th>Credit</th>
-              <th>Balance</th>
+              <th>Datum</th>
+              <th>Verifikat</th>
+              <th>Beskrivning</th>
+              <th>Debet</th>
+              <th>Kredit</th>
+              <th>Balans</th>
             </tr>
           </thead>
           <tbody>
